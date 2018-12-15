@@ -23,8 +23,9 @@ document.querySelector("#is-completed").addEventListener("change", function(e){
 document.querySelector("#add-todo-form").addEventListener("submit", function(e){
     e.preventDefault();
     if(e.target.elements.addTodo.value !== "") {
-        todos.push(
-            {text: e.target.elements.addTodo.value, 
+        todos.push({   
+                id: uuidv4(),
+                text: e.target.elements.addTodo.value, 
                 completed: false
             });
         saveTodos(todos);

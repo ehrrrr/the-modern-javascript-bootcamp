@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Edit notes</h1>
+    <a href="./index.html">Home</a>
+    <form action="">
+        <input id="note-title" type="text" placeholder="Note title">
+        <span id="last-edited"></span>
+        <textarea name="" id="note-body" cols="30" rows="10" placeholder="Enter note text"></textarea>
+        <button id="remove-note">Remove note</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script src="./notes-functions.js"></script>
+    <script src="./notes-edit.js"></script>
+</body>
+</html>
