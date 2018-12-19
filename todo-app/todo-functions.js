@@ -1,40 +1,44 @@
+'use strict'
+
 // Fetch existing todos from localStorage
-const getSavedTodos = function(){
+const getSavedTodos = () => {
     const todosJSON = localStorage.getItem("todos");
-    return todosJSON ? JSON.parse(todosJSON) : [];
+    try {
+        return todosJSON ? JSON.parse(todosJSON) : [];
+    } catch (e) {
+        return [];
+    }
 }
 
 // Save todos to localStorage
-const saveTodos = function(todos){
+const saveTodos = (todos) => {
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 //Render application todos based on filters
-function renderTodos(todos, filters) {
+const renderTodos = (todos, filters) => {
 
-    const filteredTodos = todos.filter(function (todo) {
-        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-        const hideCompletedMatch = !filters.hideCompleted || !todo.completed
+    const filteredTodos = todos.filter( (todo) => {
+        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
+        const hideCompletedMatch = !filters.hideCompleted || !todo.completed;
         
         return searchTextMatch && hideCompletedMatch
     })
 
-    const incompletedTodos = filteredTodos.filter(function(todo) {
-        return !todo.completed;
-    });
+    const incompletedTodos = filteredTodos.filter((todo) => !todo.completed);
     
     document.querySelector("#todo-container").innerHTML="";
     const summary = generateSummaryDOM(incompletedTodos);
     document.querySelector("#todo-container").appendChild(summary);
     
-    filteredTodos.forEach(function(todo){
+    filteredTodos.forEach((todo) => {
         const todoEl = generateTodoDOM(todo);
         document.querySelector("#todo-container").appendChild(todoEl);
     })
 }
 
 //Remove todo
-const removeTodo = function(id) {
+const removeTodo = (id) => {
     const todoIndex = todos.findIndex(function(todo){
         return todo.id===id;
     })
@@ -44,7 +48,7 @@ const removeTodo = function(id) {
 }
 
 //Get the DOM elements for an individual todo
-const generateTodoDOM = function(todo) {
+const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('div');
     const checkbox = document.createElement('input');
     const todoText = document.createElement('label');
@@ -73,7 +77,7 @@ const generateTodoDOM = function(todo) {
     // Setup the remove button
     removeButton.textContent = 'x';
     todoEl.appendChild(removeButton);
-    removeButton.addEventListener("click", function() {
+    removeButton.addEventListener("click", () => {
         removeTodo(todo.id);
         saveTodos(todos);
         renderTodos(todos, filters);
@@ -83,7 +87,7 @@ const generateTodoDOM = function(todo) {
 }
 
 //Get the DOM elements for list summary
-const generateSummaryDOM = function(incompletedTodos) {   
+const generateSummaryDOM = (incompletedTodos) => {   
     const summary = document.createElement("h2");
     summary.textContent = `You have ${incompletedTodos.length} todos left`;
     return summary;

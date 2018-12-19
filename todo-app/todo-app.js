@@ -1,3 +1,5 @@
+'use strict'
+
 const todos = getSavedTodos();
 
 const filters = {
@@ -8,21 +10,21 @@ const filters = {
 renderTodos(todos, filters);
 
 //Filter todos by input
-document.querySelector("#filter-todos").addEventListener("input", function(e){
-    filters.searcedText = e.target.value;
+document.querySelector("#filter-todos").addEventListener("input", (e) => {
+    filters.searchText = e.target.value;
     renderTodos(todos, filters);
 });
 
 //Hide and show completed via checkbox
-document.querySelector("#is-completed").addEventListener("change", function(e){
+document.querySelector("#is-completed").addEventListener("change", (e) => {
     filters.hideCompleted = e.target.checked;
     renderTodos(todos, filters);
 });
 
 //Add todo
-document.querySelector("#add-todo-form").addEventListener("submit", function(e){
+document.querySelector("#add-todo-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    if(e.target.elements.addTodo.value !== "") {
+    if(e.target.elements.addTodo.value) {
         todos.push({   
                 id: uuidv4(),
                 text: e.target.elements.addTodo.value, 

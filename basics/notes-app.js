@@ -38,6 +38,16 @@ const findNotes = function(notes, query) {
 
 }
 
+// console.log(findNotes(notes, "eating"));
+
+// const findNote = function (notes, noteTitle) {
+//     const index = notes.findIndex(function (note, index) {
+//         console.log(note.title);
+//         return note.title.toLowerCase() === noteTitle.toLowerCase();
+//     })
+//     return notes[index];
+// }
+
 // const note = findNote(notes, "office modification");
 // console.log(note);
 

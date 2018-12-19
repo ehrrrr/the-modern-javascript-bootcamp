@@ -1,5 +1,5 @@
 const account = {
-    name: "John Doe",
+    name: "Andrew Mead",
     expenses: [],
     income: [],
     addExpense: function(description, amount) {
@@ -36,8 +36,15 @@ const account = {
     }
 }
 
+//Expense -> description, amount - DONE
+//addExpense -> description, amount - DONE
+//getAccountSummary -> total up all expenses -> ${name} has ${total} in expenses. - DONE
 
+//Add income array to account - DONE
+//addIncome method - DONE
+//Tweak getAccountSummary `${name} has a balance of $${balance}. $${income} in income. $${expenses} in expenses`
 console.log("\n================================\n");
+
 
 account.addExpense("Rent", 950);
 account.addExpense("Coffee",2);

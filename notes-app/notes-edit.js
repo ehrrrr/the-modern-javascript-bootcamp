@@ -1,3 +1,5 @@
+'use strict'
+
 const noteTitle = document.querySelector("#note-title");
 const lastEdited = document.querySelector("#last-edited");
 const noteBody = document.querySelector("#note-body");
@@ -5,9 +7,7 @@ const removeBtn = document.querySelector("#remove-note");
 
 const noteId = location.hash.substring(1);
 let notes = getSavedNotes();
-let note = notes.find(function(note){
-    return note.id === noteId;
-});
+let note = notes.find((note)=>note.id === noteId);
 
 if(!note) {
     location.assign("./index.html");
@@ -16,7 +16,7 @@ if(!note) {
 lastEdited.textContent =  generateLastEdited(note.updatedAt);
 
 noteTitle.value = note.title;
-noteTitle.addEventListener("input", function(e){
+noteTitle.addEventListener("input", (e) => {
     note.title = e.target.value;
     note.updatedAt = moment().valueOf();
     lastEdited.textContent = `Last edited ${moment(note.updatedAt).fromNow()}`;
@@ -24,7 +24,7 @@ noteTitle.addEventListener("input", function(e){
 });
 
 noteBody.value = note.body;
-noteBody.addEventListener("input", function(e){
+noteBody.addEventListener("input", (e) => {
     note.body = e.target.value;
     note.updatedAt = moment().valueOf();
     lastEdited.textContent =  generateLastEdited(note.updatedAt);
@@ -32,13 +32,13 @@ noteBody.addEventListener("input", function(e){
 });
 
 
-removeBtn.addEventListener("click", function(){
+removeBtn.addEventListener("click", () => {
     removeNote(noteId);
     saveNotes(notes);
     location.assign("./index.html");
 });
 
-window.addEventListener("storage", function(e){
+window.addEventListener("storage", (e) => {
     if(e.key==="notes") {
         notes = JSON.parse(e.newValue);
 
